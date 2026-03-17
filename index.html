@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>🏎️ Ricardo Tormo Party!</title>
+
+  <!-- Google Fonts: Fredoka One (titulos) + Nunito (cuerpo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════════
+       PANTALLA DE CONFIGURACIÓN
+       ══════════════════════════════════════════════════════════ -->
+  <div id="setup-screen">
+    <div id="setup-wrapper">
+
+      <!-- Logo animado -->
+      <div class="setup-logo">
+        <div class="logo-flag">🏁</div>
+        <h1 class="logo-title">RICARDO TORMO<br><span>PARTY</span></h1>
+        <div class="logo-flag">🏁</div>
+      </div>
+
+      <!-- Contenido dinámico: se inyecta por JS -->
+      <div id="setup-content"></div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       PANTALLA DE JUEGO (oculta hasta que empieza)
+       ══════════════════════════════════════════════════════════ -->
+  <div id="game-screen" style="display:none;">
+
+    <!-- Cabecera -->
+    <header id="game-header">
+      <div class="header-brand">🏎️ RICARDO TORMO PARTY</div>
+      <div id="turn-indicator"><!-- se rellena por JS --></div>
+      <button id="restart-header-btn" onclick="restartGame()" title="Reiniciar partida">🔄 Reiniciar</button>
+    </header>
+
+    <!-- Cuerpo principal: tablero + panel lateral -->
+    <div id="game-body">
+
+      <!-- TABLERO SVG -->
+      <div id="board-wrapper">
+        <div id="board-container">
+          <svg id="board-svg" xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 1000 560" preserveAspectRatio="xMidYMid meet">
+            <!-- Generado dinámicamente por game.js -->
+          </svg>
+
+          <!-- Leyenda de colores -->
+          <div id="legend">
+            <span class="legend-item white">⬜ Sin efecto</span>
+            <span class="legend-item red">🟥 Efecto negativo</span>
+            <span class="legend-item yellow">🟨 Efecto positivo</span>
+            <span class="legend-item green">🟩 Power-up</span>
+            <span class="legend-item finish">🏆 Meta</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL LATERAL -->
+      <aside id="side-panel">
+
+        <!-- Dado -->
+        <div id="dice-section">
+          <div id="dice-display">⚀</div>
+          <button id="roll-btn" onclick="handleRollDice()">
+            🎲 ¡TIRAR DADO!
+          </button>
+        </div>
+
+        <!-- Clasificación de jugadores -->
+        <div id="players-section">
+          <h3 class="panel-title">🏆 Clasificación</h3>
+          <div id="players-list"><!-- JS --></div>
+        </div>
+
+        <!-- Registro de eventos -->
+        <div id="log-section">
+          <h3 class="panel-title">📋 Registro</h3>
+          <div id="event-log-content"><!-- JS --></div>
+        </div>
+
+      </aside>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       POPUP: Efecto de casilla (breve)
+       ══════════════════════════════════════════════════════════ -->
+  <div id="cell-popup" style="display:none;">
+    <div class="popup-inner">
+      <div id="cell-popup-text"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       POPUP: Evento aleatorio
+       ══════════════════════════════════════════════════════════ -->
+  <div id="event-popup" style="display:none;">
+    <div class="event-popup-inner">
+      <div class="event-popup-badge">⚡ EVENTO ESPECIAL ⚡</div>
+      <div id="event-popup-title"></div>
+      <div id="event-popup-desc"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       PANTALLA DE GANADOR
+       ══════════════════════════════════════════════════════════ -->
+  <div id="win-screen" style="display:none;">
+    <!-- Relleno por JS mediante showWinScreen() -->
+  </div>
+
+  <script src="js/game.js"></script>
+</body>
+</html>
